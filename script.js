@@ -6,17 +6,57 @@ const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas = [
     {
-        enunciado: "Quais são os sinais e sintomas mais comuns da depressão, e como podemos diferenciar a depressão de outras condições de saúde mental?",
+        enunciado: "Pergunta 1",
         alternativas: [
-            "Como podemos identificar sinais de depressão em comparação com outras condições de saúde mental, como ansiedade ou transtorno bipolar, em diferentes faixas etárias",
-            "Como a depressão afeta exclusivamente o sono e o apetite, sem influenciar outros aspectos da saúde mental."
-        ],
+            {
+                texto: "Texto da primeira alternativa",
+                afirmacao: "Afirmacao 1"
+            },
+
+            {
+                texto: "texto da segunda alternativa ",
+                afirmacao : "Afirmacao da alternativa 2"
+            }
+             
+            
+        ]
     },
     {
-        enunciado: "Quais abordagens terapêuticas (medicamentosas e não medicamentosas) têm se mostrado mais eficazes no tratamento da depressão em diferentes grupos etários?",
+        enunciado: "Pergunta 2",
         alternativas: [
-            "Como a eficácia das abordagens terapêuticas para a depressão varia entre adolescentes, adultos e idosos, e quais são as melhores práticas para cada grupo.",
-            "Por que a terapia cognitivo-comportamental é ineficaz em adolescentes, mas extremamente eficaz em idosos"
-        ],
-    },
+            {
+                texto: "Texto da alternativa 1",
+                afirmacao: "Afirmação da alternativa 1"
+            },
+            {
+                texto: "Texto da afirmação 2",
+                afirmacao: "Texto da afirmação 2"
+            }
+            
+        ]
+    } 
 ];
+
+let atual = 0;
+let perguntaAtual;
+
+function mostraPergunta(){
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntas[atual].enunciado;
+    caixaAlternativas.textContent = "";
+    mostraAlternativas();
+}
+
+function mostraAlternativas(){
+    for (const alternativa of perguntaAtual.alternativas){
+        const botaoAlternativas = document.createElement("button");
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click", function (){
+            atual++;
+            mostraPergunta();
+        } )
+        caixaAlternativas.appendChild(botaoAlternativas);
+    }
+}
+
+mostraPergunta();
